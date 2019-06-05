@@ -73,8 +73,8 @@ int main(void)
 
     while (1)
     {
-        /* Delay 1000 ms */
-        SysTick_DelayTicks(1000U);
+        /* Delay 500 ms */
+        SysTick_DelayTicks(500U);
         if (g_pinSet)
         {
             GPIO_PinWrite(EXAMPLE_LED_GPIO, EXAMPLE_LED_GPIO_PIN, 0U);
