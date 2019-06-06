@@ -87,7 +87,7 @@ int main(void)
     PRINTF("Initialization complete...\r\n");
     while (1)
     {
-    	if(millis() > led_timer + 2000)
+    	if(millis() > led_timer + 1000)
 		{
 			led_timer = millis();
 			if (g_pinSet)

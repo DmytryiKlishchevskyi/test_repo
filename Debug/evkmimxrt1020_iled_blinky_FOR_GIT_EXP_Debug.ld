@@ -6,7 +6,7 @@
  * Generated linker script file for MIMXRT1021xxxxx
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v10.3.0 [Build 2200] [2018-12-03] on Jun 6, 2019 10:37:36 AM
+ * MCUXpresso IDE v10.3.0 [Build 2200] [2018-12-03] on Jun 6, 2019 12:44:57 PM
  */
 
 INCLUDE "evkmimxrt1020_iled_blinky_FOR_GIT_EXP_Debug_library.ld"
