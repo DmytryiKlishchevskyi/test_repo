@@ -1,2 +1,4 @@
 # Ignore folder named 'Debug'
 Debug/
+/Debug/
+/Debug
