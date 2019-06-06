@@ -26,9 +26,11 @@
  * Variables
  ******************************************************************************/
 volatile uint32_t g_systickCounter;
+volatile uint32_t millis_cnt = 0;
 /* The PIN status */
 volatile bool g_pinSet = false;
 volatile uint32_t millis_cnt = 0;
+
 
 /*******************************************************************************
  * Code
@@ -58,6 +60,10 @@ void SysTick_DelayTicks(uint32_t n)
 /*!
  * @brief Main function
  */
+
+uint32_t led_timer = 0;
+uint32_t print_timer = 0;
+
 int main(void)
 {
     /* Define the init structure for the output LED pin*/
@@ -83,17 +89,24 @@ int main(void)
     PRINTF("Initialization complete...\r\n");
     while (1)
     {
-        /* Delay 1000 ms */
-        SysTick_DelayTicks(1000U);
-        if (g_pinSet)
-        {
-            GPIO_PinWrite(EXAMPLE_LED_GPIO, EXAMPLE_LED_GPIO_PIN, 0U);
-            g_pinSet = false;
-        }
-        else
-        {
-            GPIO_PinWrite(EXAMPLE_LED_GPIO, EXAMPLE_LED_GPIO_PIN, 1U);
-            g_pinSet = true;
-        }
+    	if(millis() > led_timer + 2000)
+		{
+			led_timer = millis();
+			if (g_pinSet)
+			{
+				GPIO_PinWrite(EXAMPLE_LED_GPIO, EXAMPLE_LED_GPIO_PIN, 0U);
+				g_pinSet = false;
+			}
+			else
+			{
+				GPIO_PinWrite(EXAMPLE_LED_GPIO, EXAMPLE_LED_GPIO_PIN, 1U);
+				g_pinSet = true;
+			}
+		}
+		if(millis() > print_timer + 1000)
+		{
+			print_timer = millis();
+			PRINTF("state = %d\r\n", GPIO_PinRead(EXAMPLE_LED_GPIO, EXAMPLE_LED_GPIO_PIN));
+		}
     }
 }
