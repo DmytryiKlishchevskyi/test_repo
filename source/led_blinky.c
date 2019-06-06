@@ -10,9 +10,7 @@
 
 #include "pin_mux.h"
 #include "clock_config.h"
-#include "peripherals.h"
 #include "fsl_debug_console.h"
-#include "fsl_lpuart.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -68,7 +66,6 @@ int main(void)
     /* Board pin init */
     BOARD_InitPins();
     BOARD_BootClockRUN();
-    BOARD_InitPeripherals();
     BOARD_InitDebugConsole();
 
     /* Init output LED GPIO. */
@@ -77,9 +74,13 @@ int main(void)
     /* Set systick reload value to generate 1ms interrupt */
     if(SysTick_Config(SystemCoreClock / 1000U))
     {
-        while(1);
+        while(1)
+        {
+        }
     }
-
+//    PRINTF("\033\143"); //cls command for putty with scroll back
+	PRINTF("\033c\033[3J"); // cls command for putty without scroll back
+    PRINTF("Initialization complete...\r\n");
     while (1)
     {
         /* Delay 1000 ms */
