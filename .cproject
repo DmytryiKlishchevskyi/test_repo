@@ -702,4 +702,6 @@
 		<core>cm7</core>
 		<coreId>core0_MIMXRT1021xxxxx</coreId>
 	</storageModule>
+	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

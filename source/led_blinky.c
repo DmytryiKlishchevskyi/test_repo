@@ -10,6 +10,9 @@
 
 #include "pin_mux.h"
 #include "clock_config.h"
+#include "peripherals.h"
+#include "fsl_debug_console.h"
+#include "fsl_lpuart.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -27,6 +30,7 @@
 volatile uint32_t g_systickCounter;
 /* The PIN status */
 volatile bool g_pinSet = false;
+volatile uint32_t millis_cnt = 0;
 
 /*******************************************************************************
  * Code
@@ -37,6 +41,12 @@ void SysTick_Handler(void)
     { 
         g_systickCounter--;
     }
+    millis_cnt++;
+}
+
+uint32_t millis(void)
+{
+	return millis_cnt;
 }
 
 void SysTick_DelayTicks(uint32_t n)
@@ -58,6 +68,7 @@ int main(void)
     /* Board pin init */
     BOARD_InitPins();
     BOARD_BootClockRUN();
+    BOARD_InitPeripherals();
     BOARD_InitDebugConsole();
 
     /* Init output LED GPIO. */
@@ -66,9 +77,7 @@ int main(void)
     /* Set systick reload value to generate 1ms interrupt */
     if(SysTick_Config(SystemCoreClock / 1000U))
     {
-        while(1)
-        {
-        }
+        while(1);
     }
 
     while (1)
