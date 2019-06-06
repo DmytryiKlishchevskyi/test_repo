@@ -29,7 +29,7 @@ volatile uint32_t g_systickCounter;
 volatile uint32_t millis_cnt = 0;
 /* The PIN status */
 volatile bool g_pinSet = false;
-volatile uint32_t millis_cnt = 0;
+
 
 
 /*******************************************************************************
@@ -80,9 +80,7 @@ int main(void)
     /* Set systick reload value to generate 1ms interrupt */
     if(SysTick_Config(SystemCoreClock / 1000U))
     {
-        while(1)
-        {
-        }
+        while(1);
     }
 //    PRINTF("\033\143"); //cls command for putty with scroll back
 	PRINTF("\033c\033[3J"); // cls command for putty without scroll back
