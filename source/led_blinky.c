@@ -16,7 +16,7 @@
  ******************************************************************************/
 #define EXAMPLE_LED_GPIO BOARD_USER_LED_GPIO
 #define EXAMPLE_LED_GPIO_PIN BOARD_USER_LED_GPIO_PIN
-
+/* test */
 
 /*******************************************************************************
  * Prototypes
